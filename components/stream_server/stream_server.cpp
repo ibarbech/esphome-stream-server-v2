@@ -86,6 +86,10 @@ void StreamServerComponent::read() {
         char buf[128];
         len = std::min(len, 128);
         this->stream_->read_array(reinterpret_cast<uint8_t*>(buf), len);
+        ESP_LOGD(TAG, "Read %d bytes", len);
+        for (int i = 0; i < len; i++) {
+            ESP_LOGD(TAG, "%02x", buf[i]);
+        }
         for (const Client &client : this->clients_)
             client.socket->write(buf, len);
     }
@@ -96,7 +100,8 @@ void StreamServerComponent::write() {
     ssize_t len;
     for (Client &client : this->clients_) {
         while ((len = client.socket->read(&buf, sizeof(buf))) > 0){
-            this->stream_->write_array(buf, len);
+            ESP_LOGD(TAG, "Read %d bytes from client %s", len, client.identifier.c_str());
+            ESP_LOGD(TAG, "Content: %s", buf);
 		}
         if (len == 0) {
             ESP_LOGD(TAG, "Client %s disconnected", client.identifier.c_str());
