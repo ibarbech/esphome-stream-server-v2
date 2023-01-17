@@ -39,7 +39,7 @@ void StreamServerComponent::setup() {
         }
     };
 
-    this->socket_ = socket::socket(AF_INET, SOCK_STREAM, PF_INET);
+    this->socket_ = socket::socket(AF_INET, SOCK_STREAM);
 	
     struct timeval timeout;      
     timeout.tv_sec = 0;
