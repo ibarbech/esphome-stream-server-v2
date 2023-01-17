@@ -50,7 +50,7 @@ public:
 
     void set_port(uint16_t port) { this->port_ = port; }
 	int get_client_count() { return this->clients_.size(); }
-	
+	void write(const std::string &data);
 protected:
     void accept();
     void cleanup();
