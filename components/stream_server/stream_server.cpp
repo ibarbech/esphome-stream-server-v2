@@ -102,6 +102,13 @@ void StreamServerComponent::write(const std::string &data) {
         client.socket->write(data.c_str(), data.size());
     }
 }
+
+void StreamServerComponent::write(const uint8_t *data, size_t len) {
+//    sent the data to each client
+    for (Client &client : this->clients_) {
+        client.socket->write(data, len);
+    }
+}
 // git config --local user.email "
 
 void StreamServerComponent::write() {
