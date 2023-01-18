@@ -50,9 +50,9 @@ public:
 
     void set_port(uint16_t port) { this->port_ = port; }
 	int get_client_count() { return this->clients_.size(); }
-	void write(const std::string &data);
-	void write(const uint8_t *data, size_t len);
-	void write(const std::vector<uint8_t> &data) { this->write(data.data(), data.size()); }
+	void send(const std::string &data);
+	void send(const uint8_t *data, size_t len);
+	void send(const std::vector<uint8_t> &data) { this->write(data.data(), data.size()); }
 protected:
     void accept();
     void cleanup();

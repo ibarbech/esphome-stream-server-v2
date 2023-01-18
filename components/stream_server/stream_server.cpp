@@ -96,15 +96,19 @@ void StreamServerComponent::read() {
 }
 
 
-void StreamServerComponent::write(const std::string &data) {
+void StreamServerComponent::send(const std::string &data) {
 //    sent the data to each client
+    LOGD(TAG, "Sending %r", data.c_str());
     for (Client &client : this->clients_) {
         client.socket->write(data.c_str(), data.size());
     }
 }
 
-void StreamServerComponent::write(const uint8_t *data, size_t len) {
+void StreamServerComponent::send(const uint8_t *data, size_t len) {
 //    sent the data to each client
+//    convert the data to a string
+    std::string data_str(reinterpret_cast<const char*>(data), len);
+    LOGD(TAG, "Sending %r", data_str.c_str());
     for (Client &client : this->clients_) {
         client.socket->write(data, len);
     }
