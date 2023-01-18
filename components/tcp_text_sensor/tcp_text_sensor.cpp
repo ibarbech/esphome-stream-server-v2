@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "TCP_text_sensor.h"
+#include "tcp_text_sensor.h"
 
 
 
