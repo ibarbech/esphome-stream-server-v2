@@ -40,10 +40,6 @@ void TCPTextSensor::setup() {
 
 }
 
-void TCPTextSensor::dump_config() {
-    ESP_LOGCONFIG(TAG, "Empty text sensor");
-}
-
 void TCPTextSensor::loop() {
     this->accept();
     this->read();
