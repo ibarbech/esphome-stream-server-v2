@@ -53,6 +53,8 @@ public:
 	void send(const std::string &data);
 	void send(const uint8_t *data, size_t len);
 	void send(const std::vector<uint8_t> &data) { this->send(data.data(), data.size()); }
+    std::string state_{};
+
 protected:
     void accept();
     void cleanup();
@@ -66,7 +68,12 @@ protected:
         std::string identifier{};
         bool disconnected{false};
     };
-
+//    define the following attributes
+//    * stream_
+//    * port_
+//    * socket_
+//    * clients_
+//    * state_ as a string
     esphome::uart::UARTComponent *stream_{nullptr};
     std::unique_ptr<esphome::socket::Socket> socket_{};
     uint16_t port_{6638};

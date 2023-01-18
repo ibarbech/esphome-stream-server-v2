@@ -122,6 +122,8 @@ void StreamServerComponent::write() {
         while ((len = client.socket->read(&buf, sizeof(buf))) > 0){
             ESP_LOGD(TAG, "Read %d bytes from client %s", len, client.identifier.c_str());
             ESP_LOGD(TAG, "Content: %s", buf);
+            std::string data_str(reinterpret_cast<const char*>(buf), len);
+            this->state_ = data_str;
 		}
         if (len == 0) {
             ESP_LOGD(TAG, "Client %s disconnected", client.identifier.c_str());
