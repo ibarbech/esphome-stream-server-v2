@@ -98,19 +98,23 @@ void StreamServerComponent::read() {
 
 void StreamServerComponent::send(const std::string &data) {
 //    sent the data to each client
-    ESP_LOGD(TAG, "Sending %s", data.c_str());
-    for (Client &client : this->clients_) {
-        client.socket->write(data.c_str(), data.size());
+    if (data.size() > 0) {
+        ESP_LOGD(TAG, "Sending %s", data.c_str());
+        for (Client &client : this->clients_) {
+            client.socket->write(data.c_str(), data.size());
+        }
     }
 }
 
 void StreamServerComponent::send(const uint8_t *data, size_t len) {
 //    sent the data to each client
 //    convert the data to a string
-    std::string data_str(reinterpret_cast<const char*>(data), len);
-    ESP_LOGD(TAG, "Sending %s", data_str.c_str());
-    for (Client &client : this->clients_) {
-        client.socket->write(data, len);
+    if (len > 0) {
+        std::string data_str(reinterpret_cast<const char*>(data), len);
+        ESP_LOGD(TAG, "Sending %s", data_str.c_str());
+        for (Client &client : this->clients_) {
+            client.socket->write(data, len);
+        }
     }
 }
 // git config --local user.email "
