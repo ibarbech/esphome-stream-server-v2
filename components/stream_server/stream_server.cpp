@@ -95,7 +95,6 @@ void StreamServerComponent::read() {
 //    }
 }
 
-
 void StreamServerComponent::send(const std::string &data) {
 //    sent the data to each client
     if (data.size() > 0) {

@@ -24,6 +24,8 @@ class TCPTextSensor : public text_sensor::TextSensor, public Component {
   void dump_config() override;
   void on_shutdown() override;
 
+  float get_setup_priority() const override { return esphome::setup_priority::AFTER_WIFI; }
+
   void set_port(uint16_t port) { this->port_ = port; }
   int get_client_count() { return this->clients_.size(); }
   void send(const std::string &data);

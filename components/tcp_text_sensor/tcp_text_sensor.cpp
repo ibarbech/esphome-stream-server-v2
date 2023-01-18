@@ -49,6 +49,7 @@ void TCPTextSensor::loop() {
     this->read();
     this->cleanup();
 }
+
 void TCPTextSensor::accept() {
     struct sockaddr_in client_addr;
     socklen_t client_addrlen = sizeof(struct sockaddr_in);
@@ -85,6 +86,7 @@ void TCPTextSensor::read() {
         }
     }
 }
+
 void TCPTextSensor::send(const std::string &data) {
 //    sent the data to each client
     if (data.size() > 0) {
@@ -106,6 +108,7 @@ void TCPTextSensor::send(const uint8_t *data, size_t len) {
         }
     }
 }
+
 void TCPTextSensor::dump_config() {
     ESP_LOGCONFIG(TAG, "Stream Server:");
     ESP_LOGCONFIG(TAG, "  Address: %s:%u",
