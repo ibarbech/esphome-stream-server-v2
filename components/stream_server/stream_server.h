@@ -17,6 +17,7 @@
 #pragma once
 
 #include "esphome/core/component.h"
+#include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/socket/socket.h"
 #include "esphome/components/uart/uart.h"
 
@@ -35,7 +36,7 @@
 #include <string>
 #include <vector>
 
-class StreamServerComponent : public esphome::Component {
+class StreamServerComponent : public text_sensor::TextSensor, esphome::Component {
 public:
     StreamServerComponent() = default;
     explicit StreamServerComponent(esphome::uart::UARTComponent *stream) : stream_{stream} {}
@@ -53,7 +54,6 @@ public:
 	void send(const std::string &data);
 	void send(const uint8_t *data, size_t len);
 	void send(const std::vector<uint8_t> &data) { this->send(data.data(), data.size()); }
-    std::string state_{};
 
 protected:
     void accept();
