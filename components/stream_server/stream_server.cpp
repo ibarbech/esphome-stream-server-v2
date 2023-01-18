@@ -81,18 +81,18 @@ void StreamServerComponent::cleanup() {
 }
 
 void StreamServerComponent::read() {
-    int len;
-    while ((len = this->stream_->available()) > 0) {
-        char buf[128];
-        len = std::min(len, 128);
-        this->stream_->read_array(reinterpret_cast<uint8_t*>(buf), len);
-        ESP_LOGD(TAG, "Read %d bytes", len);
-        for (int i = 0; i < len; i++) {
-            ESP_LOGD(TAG, "%02x", buf[i]);
-        }
-        for (const Client &client : this->clients_)
-            client.socket->write(buf, len);
-    }
+//    int len;
+//    while ((len = this->stream_->available()) > 0) {
+//        char buf[128];
+//        len = std::min(len, 128);
+//        this->stream_->read_array(reinterpret_cast<uint8_t*>(buf), len);
+//        ESP_LOGD(TAG, "Read %d bytes", len);
+//        for (int i = 0; i < len; i++) {
+//            ESP_LOGD(TAG, "%02x", buf[i]);
+//        }
+//        for (const Client &client : this->clients_)
+//            client.socket->write(buf, len);
+//    }
 }
 
 
