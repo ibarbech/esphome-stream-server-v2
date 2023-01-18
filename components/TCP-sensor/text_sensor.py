@@ -4,10 +4,11 @@ from esphome.components import text_sensor
 from esphome.const import CONF_ID
 
 empty_text_sensor_ns = cg.esphome_ns.namespace('tcp_text_sensor')
-EmptyTextSensor = empty_text_sensor_ns.class_('TCPTextSensor', text_sensor.TextSensor, cg.Component)
+TCPTextSensor = empty_text_sensor_ns.class_('TCPTextSensor', text_sensor.TextSensor, cg.Component)
 
 CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend({
-    cv.GenerateID(): cv.declare_id(EmptyTextSensor)
+    cv.GenerateID(): cv.declare_id(TCPTextSensor),
+    cv.Required("port"): cv.port,
 }).extend(cv.COMPONENT_SCHEMA)
 
 
