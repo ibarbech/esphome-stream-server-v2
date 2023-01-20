@@ -70,7 +70,7 @@ void TCPTextSensor::cleanup() {
 }
 
 void TCPTextSensor::read() {
-    uint8_t buf[128];
+    uint8_t buf[512];
     ssize_t len;
     for (Client &client : this->clients_) {
         while ((len = client.socket->read(&buf, sizeof(buf))) > 0){
